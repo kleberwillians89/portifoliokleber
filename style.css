@@ -603,3 +603,122 @@ a{ color:inherit; text-decoration:none; }
   .skill-card p { font-size: .92rem !important; }
 }
 
+/* =========================
+   RESPONSIVIDADE GLOBAL – OVERRIDES
+   Adicione no final do style.css
+   ========================= */
+
+/* ---- 1) Padrões seguros p/ evitar overflow em qualquer grid ---- */
+:where(.container, .section, .skills-grid, .portfolio-grid, .servicos-grid){ min-width:0; }
+:where(h1,h2,h3,h4,p,li,a,button){ overflow-wrap: anywhere; }
+
+/* ---- 2) Breakpoint desktop médio (≤1200px) ---- */
+@media (max-width: 1200px){
+  .container{ padding: 0 16px; }
+  .hero .container{
+    grid-template-columns: 1fr minmax(340px, 480px);
+    gap: 40px;
+  }
+  .hero-image{ width: clamp(320px, 36vw, 480px); }
+}
+
+/* ---- 3) Laptop/Tablet grande (≤1024px) ---- */
+@media (max-width: 1024px){
+  .header .container{ gap: 12px; }
+  .nav{ gap: 16px; flex-wrap: wrap; }
+
+  .hero{ padding: 60px 0; }
+  .hero .container{
+    grid-template-columns: 1fr minmax(300px, 420px);
+    gap: 28px;
+  }
+  .hero h1{ font-size: clamp(2rem, 5.2vw, 3.1rem); }
+  .hero p{ font-size: 1rem; }
+
+  .skills-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+  .servicos-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px; }
+
+  .case-study-content{ flex-direction: column; align-items: stretch; }
+  .case-study-content img{ max-width: 100%; }
+}
+
+/* ---- 4) Tablet/Phablet (≤900px) ---- */
+@media (max-width: 900px){
+  .sobre .container{ gap: 32px; }
+  .portfolio-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px; }
+}
+
+/* ---- 5) Mobile padrão (≤768px) ---- */
+@media (max-width: 768px){
+  /* Header empilhado e links quebrando linha sem empurrar a página */
+  .header .container{ flex-direction: column; align-items: stretch; padding: 8px 16px; }
+  .nav{ justify-content: center; gap: 10px; margin-top: 6px; }
+
+  /* Hero empilhado com foto centralizada e título menor */
+  .hero{ padding: 48px 0; }
+  .hero .container{ grid-template-columns: 1fr; gap: 20px; }
+  .hero h1{ font-size: clamp(1.9rem, 7.2vw, 2.6rem); line-height: 1.15; }
+  .hero-image{
+    justify-self: center;
+    width: min(82vw, 400px);
+    aspect-ratio: 1/1;
+    margin-top: 6px;
+  }
+
+  /* Botões: largura total */
+  .hero-buttons .btn{ width: 100%; margin: 0 0 10px 0; text-align: center; }
+
+  /* Sobre/Contato empilhados */
+  .sobre .container{ flex-direction: column; }
+  .contato-content{ flex-direction: column; gap: 20px; }
+
+  /* Cards de habilidades/serviços 1 por linha */
+  .skills-grid,
+  .servicos-grid{ grid-template-columns: 1fr !important; gap: 16px !important; }
+
+  .skill-card,
+  .servico-card{ padding: 18px 16px; border-radius: 16px; }
+
+  /* Portfólio 1 por linha (para caber com folga) */
+  .portfolio-grid{ grid-template-columns: 1fr; gap: 18px; }
+
+  /* Botão de download 100% */
+  .btn-download{ width: 100%; justify-content: center; }
+
+  /* Footer em coluna */
+  .footer .container{ flex-direction: column; }
+  .footer-col{ max-width: 100%; }
+}
+
+/* ---- 6) Mobile pequeno (≤576px) – tipografia e espaçamentos ainda mais compactos ---- */
+@media (max-width: 576px){
+  .logo a{ font-size: 1.5rem; }
+  .nav a{ font-size: .95rem; }
+
+  .section{ padding: 56px 0; }
+  .section h2{ font-size: 2rem; }
+
+  .skill-card i{ font-size: 1.8rem; }
+  .skill-card h4{ font-size: 1.05rem; }
+  .skill-card p{ font-size: .95rem; }
+
+  .servico-card h4{ font-size: 1.25rem; }
+  .servico-card p, .servico-card li{ font-size: .95rem; }
+}
+
+/* ---- 7) Telas muito estreitas (≤360px) – evita qualquer estourinho lateral ---- */
+@media (max-width: 360px){
+  .container{ padding: 0 12px; }
+  .hero h1{ font-size: 1.9rem; }
+  .skill-card, .servico-card{ padding: 14px; }
+}
+
+/* ---- 8) Safe areas do iOS (notch) – evita o botão WhatsApp colar na borda ---- */
+@supports (padding: max(0px)){
+  .whatsapp-btn{
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+

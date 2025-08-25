@@ -1,3 +1,5 @@
+
+
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap');
 
 /* =========================
@@ -544,3 +546,60 @@ a{ color:inherit; text-decoration:none; }
   .contato-content{ flex-direction:column; gap:24px; }
   .footer .container{ flex-direction:column; }
 }
+
+
+/* ===== Responsividade da seção de Skills / Cards ===== */
+
+/* Tablet: 2 colunas confortáveis */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+  }
+  .skill-card {
+    padding: 20px 18px !important;
+  }
+  .skill-card i { font-size: 2.2rem !important; }
+  .skill-card h4 { font-size: 1.15rem !important; }
+  .skill-card p  { font-size: .95rem !important; }
+}
+
+/* Mobile: 1 coluna, textos legíveis e boa área de toque */
+@media (max-width: 768px) {
+  /* Garante colunas e espaçamentos adequados */
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    margin-top: 16px;
+  }
+
+  /* Cards com padding mais compacto e altura consistente */
+  .skill-card {
+    padding: 18px 16px !important;
+    border-radius: 16px !important;
+    min-height: 180px;             /* ajuste se quiser menores/maiores */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Ícone, título e texto em tamanhos ideais para tela pequena */
+  .skill-card i   { font-size: 2rem !important; margin-bottom: 10px !important; }
+  .skill-card h4  { font-size: 1.1rem !important; margin-bottom: 6px !important; }
+  .skill-card p   { font-size: .95rem !important; line-height: 1.45 !important; }
+
+  /* Deixa o botão "Baixar Currículo" ocupar a largura toda */
+  .btn-download {
+    width: 100% !important;
+    justify-content: center;
+    padding: .9rem 1.1rem !important;
+    margin-bottom: 16px; /* dá respiro antes dos cards */
+  }
+}
+
+/* Micro-ajuste: previne estourar lateral em telas muito estreitas */
+@media (max-width: 380px) {
+  .skill-card { padding: 16px 14px !important; }
+  .skill-card p { font-size: .92rem !important; }
+}
+
